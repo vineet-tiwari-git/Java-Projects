@@ -1,0 +1,33 @@
+# RDBMS-Data-Fetcher
+
+Simple Java program to pull large volumes of data from relational database.
+
+## Installation
+
+```bash
+mvn clean package
+java -jar RDBMS-Data-Fetcher-0.0.1-SNAPSHOT-jar-with-dependencies.jar tps=1
+```
+
+**TPS -> is to allow running multiple threads and create connections pool with same count.**
+
+## Usage
+
+Program needs settings.properties file to be available in the same directory where it is ran. This program can work in two modes. With params or no params. Mode is controlled  a property in setttings.properties.
+
+1. With Params: Use case would for example you need to pull all the user details based on the user ids and about 100K user ids are provided. Doing this manually would be a nightmare hence the script. In such a case a SQL can be developed to do it based on per user id or a bunch of user ids. Program takes SQL file as input and user id file as input from settings.properties file to the run the sql for each of the user ids and print the output.
+
+2. No Params: This is when we need to lets say millions of records from database and DB client just dies while doing that. 
+
+
+**setting.properties file content**
+
+* #mode=no-params --> No param mode
+* mode=with-params --> With param mode
+* #SQL=select user_id from user_table where creation_date > sysdate - 365 --> Property to mention the file. Single line
+* output.data.delimiter=: --> Output data delimiter. Default is coma
+* connString={ConnectionString} --> Data base connection string
+* username={DataBaseUsername} --> Database user name
+* password={DataBasePassword} --> Database password
+* sql.file.path={SQLFilePath} --> SQL file path if it is passed as file. SQL property takes precedence over sql.file.path
+InputFilePath={InputValuesFilePath} --> Input file path
