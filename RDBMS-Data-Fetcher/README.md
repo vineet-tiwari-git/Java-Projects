@@ -1,6 +1,6 @@
 # RDBMS-Data-Fetcher
 
-Simple Java program to pull large volumes of data from relational database.
+Simple Java program to pull large volumes of data from relational database. In my experience whenever I had to pull large volumes of data from database the DB client would die on me while writing the records. This has happened multiple times therefore I decided to develop a simple script for. Came in handy numerous times. ;)
 
 ## Installation
 
@@ -15,9 +15,9 @@ java -jar RDBMS-Data-Fetcher-0.0.1-SNAPSHOT-jar-with-dependencies.jar tps=1
 
 Program needs settings.properties file to be available in the same directory where it is ran. This program can work in two modes. With params or no params. Mode is controlled  a property in setttings.properties.
 
-1. With Params: Use case would for example you need to pull all the user details based on the user ids and about 100K user ids are provided. Doing this manually would be a nightmare hence the script. In such a case a SQL can be developed to do it based on per user id or a bunch of user ids. Program takes SQL file as input and user id file as input from settings.properties file to the run the sql for each of the user ids and print the output.
+1. With Params: Example use case would be one needs to pull all the user details based on the user ids and about 100K user ids are provided. Doing this manually would be a nightmare. In such a case a SQL can be developed to do it based on per user id or a bunch of user ids. Program takes SQL file as input and user id file as input from settings.properties file to the run the sql for each of the user ids and print the output in UTF-8 encoding.
 
-2. No Params: This is when we need to lets say millions of records from database and DB client just dies while doing that. 
+2. No Params: This is when we need to pull lets say millions of records from database and DB client just dies while doing that. 
 
 
 **setting.properties file content**
@@ -30,4 +30,4 @@ Program needs settings.properties file to be available in the same directory whe
 * username={DataBaseUsername} --> Database user name
 * password={DataBasePassword} --> Database password
 * sql.file.path={SQLFilePath} --> SQL file path if it is passed as file. SQL property takes precedence over sql.file.path
-InputFilePath={InputValuesFilePath} --> Input file path
+* InputFilePath={InputValuesFilePath} --> Input file path
