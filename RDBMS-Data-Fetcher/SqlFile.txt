@@ -1,0 +1,8 @@
+select
+	login_id,
+	user_id,
+	email_address
+from
+	user_table usr
+where
+	usr.user_id in(PLACE_HOLDER)
