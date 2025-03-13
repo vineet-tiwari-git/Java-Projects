@@ -13,5 +13,4 @@ Involves:
 
 ```bash
 mvn spring-boot:run
-java -jar target/SSLDebugger-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
