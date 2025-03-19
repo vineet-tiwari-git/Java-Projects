@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres
+    container_name: Postgres_container
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: test
+
+  pg4Admin:
+    image: dpage/pgadmin4
+    container_name: Pg4admin_container
+    ports:
+    - 8888:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: test
+    
+
+#docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' Postgres-Ecomm
+#docker compose -f postgres-docker-compose.yaml up -d
+#docker compose -f postgres-docker-compose.yaml down
+#docker network inspect docker_default
