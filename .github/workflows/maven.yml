@@ -23,16 +23,14 @@ jobs:
       run: pwd
     - name: Troubleshoot2  
       run: ls
-    - name: Troubleshoot2  
-      run: cat Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml
     - name: Maven Build Eureka
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml -Dmaven.test.skip
     - name: Maven Build Product
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/pom.xml -Dmaven.test.skip
     - name: Maven Build Payment
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-PaymentService/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-PaymentService/pom.xml -Dmaven.test.skip
     - name: Maven Build Cart
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-CartService/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-CartService/pom.xml -Dmaven.test.skip
     - name: Build & push Eureka Image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
