@@ -24,21 +24,21 @@ jobs:
     - name: Troubleshoot2  
       run: ls
     - name: Troubleshoot2  
-      run: cat Demo-Spring-Eureka-Service/pom.xml
+      run: cat Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml
     - name: Maven Build Eureka
-      run: mvn -B package --file Demo-Spring-Eureka-Service/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml
     - name: Maven Build Product
-      run: mvn -B package --file Ecomm-ProductService/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/pom.xml
     - name: Maven Build Payment
-      run: mvn -B package --file Ecomm-PaymentService/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-PaymentService/pom.xml
     - name: Maven Build Cart
-      run: mvn -B package --file Ecomm-CartService/pom.xml
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-CartService/pom.xml
     - name: Build & push Eureka Image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         image: vineettiwarigithub/ecomm-eureka-service
         tags: latest
-        dockerfile: Demo-Spring-Eureka-Service/Dockerfile
+        dockerfile: Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
@@ -47,7 +47,7 @@ jobs:
       with:
         image: vineettiwarigithub/ecomm-product-service
         tags: latest
-        dockerfile: Ecomm-ProductService/Dockerfile
+        dockerfile: Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
@@ -56,7 +56,7 @@ jobs:
       with:
         image: vineettiwarigithub/ecomm-payment-service
         tags: latest
-        dockerfile: Ecomm-PaymentService/Dockerfile
+        dockerfile: Spring-Boot-Microservices-Ecomm-Service/Ecomm-PaymentService/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
@@ -65,7 +65,7 @@ jobs:
       with:
         image: vineettiwarigithub/ecomm-cart-service
         tags: latest
-        dockerfile: Ecomm-CartService/Dockerfile
+        dockerfile: Spring-Boot-Microservices-Ecomm-Service/Ecomm-CartService/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
