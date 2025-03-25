@@ -20,9 +20,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Troubleshoot1
-      run: pwd
+      run: echo ${{ secrets.DOCKER_PASSWORD }}
     - name: Troubleshoot2  
-      run: ls
+      run: echo ${{ secrets.DOCKER_USERNAME }}
     - name: Maven Build Eureka
       run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml -Dmaven.test.skip
     - name: Maven Build Product
