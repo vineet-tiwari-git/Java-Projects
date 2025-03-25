@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Ecomm Eureka Server
+name: Ecomm App
 
 on:
   push:
@@ -27,13 +27,47 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Build & push Docker image
+    - name: Maven Build Eureka
+      run: mvn -B package --file Demo-Spring-Eureka-Service/pom.xml
+      - name: Maven Build Product
+      run: mvn -B package --file Ecomm-ProductService/pom.xml
+      - name: Maven Build Payment
+      run: mvn -B package --file Ecomm-PaymentService/pom.xml
+      - name: Maven Build Cart
+      run: mvn -B package --file Ecomm-CartService/pom.xml
+    - name: Build & push Eureka Image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: vineettiwarigithub/ecomm-eureka
+        image: vineettiwarigithub/ecomm-eureka-service
         tags: latest
+        dockerfile: Demo-Spring-Eureka-Service/Dockerfile
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build & push Product Service
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: vineettiwarigithub/ecomm-product-service
+        tags: latest
+        dockerfile: Ecomm-ProductService/Dockerfile
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build & push Payment Service
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: vineettiwarigithub/ecomm-payment-service
+        tags: latest
+        dockerfile: Ecomm-PaymentService/Dockerfile
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build & push Cart Service
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: vineettiwarigithub/ecomm-cart-service
+        tags: latest
+        dockerfile: Ecomm-CartService/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
