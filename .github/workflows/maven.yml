@@ -1,4 +1,4 @@
-name: Ecomm Eureka Server
+name: Ecomm Eureka Server Test
 
 on:
   push:
