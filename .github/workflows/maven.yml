@@ -1,12 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Ecomm App
+name: Ecomm Eureka Server
 
 on:
   push:
@@ -29,11 +21,11 @@ jobs:
         cache: maven
     - name: Maven Build Eureka
       run: mvn -B package --file Demo-Spring-Eureka-Service/pom.xml
-      - name: Maven Build Product
+    - name: Maven Build Product
       run: mvn -B package --file Ecomm-ProductService/pom.xml
-      - name: Maven Build Payment
+    - name: Maven Build Payment
       run: mvn -B package --file Ecomm-PaymentService/pom.xml
-      - name: Maven Build Cart
+    - name: Maven Build Cart
       run: mvn -B package --file Ecomm-CartService/pom.xml
     - name: Build & push Eureka Image
       uses: mr-smithers-excellent/docker-build-push@v6
