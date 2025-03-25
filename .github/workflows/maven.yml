@@ -19,6 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Troubleshoot
+    - run: pwd
+    - run: ls
     - name: Maven Build Eureka
       run: mvn -B package --file Demo-Spring-Eureka-Service/pom.xml
     - name: Maven Build Product
