@@ -1,4 +1,4 @@
-name: Ecomm Eureka Server Test
+name: Ecomm Eureka Server
 
 on:
   push:
@@ -19,18 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Troubleshoot1
-      run: echo ${{ secrets.DOCKER_PASSWORD }}
-    - name: Troubleshoot2  
-      run: echo ${{ secrets.DOCKER_USERNAME }}
     - name: Maven Build Eureka
       run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/pom.xml -Dmaven.test.skip
-    - name: Maven Build Product
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/pom.xml -Dmaven.test.skip
-    - name: Maven Build Payment
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-PaymentService/pom.xml -Dmaven.test.skip
-    - name: Maven Build Cart
-      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-CartService/pom.xml -Dmaven.test.skip
+
     - name: Build & push Eureka Image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
@@ -39,7 +30,11 @@ jobs:
         dockerfile: Spring-Boot-Microservices-Ecomm-Service/Demo-Spring-Eureka-Service/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_PASSWORD }}  
+
+    - name: Maven Build Product
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/pom.xml -Dmaven.test.skip
+
     - name: Build & push Product Service
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
@@ -48,7 +43,11 @@ jobs:
         dockerfile: Spring-Boot-Microservices-Ecomm-Service/Ecomm-ProductService/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_PASSWORD }}  
+
+    - name: Maven Build Payment
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-PaymentService/pom.xml -Dmaven.test.skip
+
     - name: Build & push Payment Service
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
@@ -58,6 +57,10 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Maven Build Cart
+      run: mvn -B package --file Spring-Boot-Microservices-Ecomm-Service/Ecomm-CartService/pom.xml -Dmaven.test.skip
+
     - name: Build & push Cart Service
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
@@ -67,3 +70,4 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+    
