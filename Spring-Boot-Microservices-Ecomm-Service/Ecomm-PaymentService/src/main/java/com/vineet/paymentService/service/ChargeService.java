@@ -18,7 +18,7 @@ public class ChargeService {
 	public Charge createCharge(Charge charge) {
 		if(charge.getRequestAmount() <= 50) {
 			charge.setResponseAmount(charge.getRequestAmount());
-			charge.setStatus("Sucess");	
+			charge.setStatus("Success");	
 		} else {
 			charge.setResponseAmount(0.00);
 			charge.setStatus("Failed");
